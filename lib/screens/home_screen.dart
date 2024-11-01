@@ -1,5 +1,5 @@
-
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:my_simple_note/screens/create_note.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,6 +14,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const CreateNote()));
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
