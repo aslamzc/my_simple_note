@@ -14,12 +14,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(),
       drawer: Drawer(
         child: ListView(children: [
+          const ListTile(
+            title: Text(
+              'Simple Note',
+              style: TextStyle(
+                fontSize: 24,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           SwitchListTile(
             title: const Text('Dark Theme'),
             value: Theme.of(context).brightness == Brightness.dark,
