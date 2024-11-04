@@ -38,11 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromRGBO(233, 238, 217, 1),
         onPressed: () {
           Navigator.of(context).push(
             PageRouteBuilder(
               transitionDuration: const Duration(milliseconds: 700),
-              pageBuilder: (_, __, ___) => const CreateNote(),
+              pageBuilder: (_, __, ___) => CreateNote(onCreateNote: createNote),
               transitionsBuilder:
                   (_, Animation<double> animation, __, Widget child) {
                 return SlideTransition(
