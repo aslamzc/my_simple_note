@@ -23,14 +23,41 @@ class _HomeScreenState extends State<HomeScreen> {
           : ListView.builder(
               itemCount: notes.length,
               itemBuilder: (context, index) {
-                return Card(
-                  child: ListTile(
-                    title: Text(notes[index].title),
-                    subtitle: Text(notes[index].note),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () {
-                        deleteNote(index);
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Card(
+                    color: const Color.fromRGBO(233, 238, 217, 1),
+                    child: ListTile(
+                      title: Text(notes[index].title),
+                      subtitle: Text(notes[index].note),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () {
+                          deleteNote(index);
+                        },
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            transitionDuration:
+                                const Duration(milliseconds: 700),
+                            pageBuilder: (_, __, ___) =>
+                                CreateNote(onCreateNote: createNote),
+                            transitionsBuilder: (_, Animation<double> animation,
+                                __, Widget child) {
+                              return SlideTransition(
+                                position: Tween<Offset>(
+                                  begin: const Offset(1, 0),
+                                  end: Offset.zero,
+                                ).animate(CurvedAnimation(
+                                  parent: animation,
+                                  curve: Curves.easeInOutCubic,
+                                )),
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
                       },
                     ),
                   ),
