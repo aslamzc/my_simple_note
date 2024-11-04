@@ -93,6 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: const TextStyle(
                               fontSize: 22,
                               fontFamily: 'Roboto',
+                              color: Color.fromARGB(255, 53, 51, 51),
                             ),
                           ),
                           subtitle: Text(
@@ -100,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: const TextStyle(
                               fontSize: 18,
                               fontFamily: 'Roboto',
+                              color: Color.fromARGB(255, 53, 51, 51),
                             ),
                           ),
                           onTap: () {
