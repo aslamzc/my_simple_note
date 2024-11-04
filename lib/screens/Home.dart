@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           title: Text(
                             notes[index].title,
                             style: const TextStyle(
-                              fontSize: 24,
+                              fontSize: 22,
                               fontFamily: 'Roboto',
                             ),
                           ),
