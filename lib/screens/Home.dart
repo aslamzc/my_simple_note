@@ -40,7 +40,24 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const CreateNote()));
+            PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 700),
+              pageBuilder: (_, __, ___) => const CreateNote(),
+              transitionsBuilder:
+                  (_, Animation<double> animation, __, Widget child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1, 0),
+                    end: Offset.zero,
+                  ).animate(CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.easeInOutCubic,
+                  )),
+                  child: child,
+                );
+              },
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),
