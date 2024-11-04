@@ -87,12 +87,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     secondaryBackground: Container(
                       alignment: Alignment.centerRight,
                       padding: const EdgeInsets.only(right: 20),
-                      color: const Color.fromRGBO(133, 159, 61, 1),
+                      color: const Color.fromRGBO(176, 48, 82, 1),
                       child: const Icon(Icons.archive,
                           color: Color.fromARGB(255, 255, 255, 255), size: 40),
                     ),
                     child: Card(
-                      color: const Color.fromRGBO(233, 238, 217, 1),
+                      color: const Color.fromRGBO(133, 159, 61, 1),
                       child: SizedBox(
                         height: 120,
                         child: ListTile(
@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(233, 238, 217, 1),
+        backgroundColor: const Color.fromRGBO(133, 159, 61, 1),
         onPressed: () {
           Navigator.of(context).push(
             PageRouteBuilder(
