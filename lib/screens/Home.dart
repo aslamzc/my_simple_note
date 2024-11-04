@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SwitchListTile(
             title: const Text('Dark Theme'),
             value: Theme.of(context).brightness == Brightness.dark,
+            activeColor: const Color.fromRGBO(133, 159, 61, 1),
             onChanged: (value) {
               setState(() {
                 final theme = value ? ThemeData.dark() : ThemeData.light();
