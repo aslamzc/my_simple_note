@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
-import 'package:my_simple_note/screens/CreateNote.dart';
+import 'package:my_simple_note/screens/create_note.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Note> notes = [];
+  List<Note> notes = List.empty(growable: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +18,25 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Home'),
         centerTitle: true,
       ),
+      body: notes.isEmpty
+          ? const Center(child: Text('No notes available'))
+          : ListView.builder(
+              itemCount: notes.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(notes[index].title),
+                    subtitle: Text(notes[index].note),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        deleteNote(index);
+                      },
+                    ),
+                  ),
+                );
+              },
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -26,5 +45,17 @@ class _HomeScreenState extends State<HomeScreen> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  void createNote(Note note) {
+    setState(() {
+      notes.add(note);
+    });
+  }
+
+  void deleteNote(int index) {
+    setState(() {
+      notes.removeAt(index);
+    });
   }
 }
