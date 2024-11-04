@@ -17,7 +17,12 @@ class _CreateNoteState extends State<CreateNote> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Note'),
+        title: const Text('Add Note',
+            style: TextStyle(
+              fontSize: 24,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
+            )),
         centerTitle: true,
       ),
       body: Padding(

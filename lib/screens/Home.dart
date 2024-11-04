@@ -14,7 +14,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text(
+          'Notes',
+          style: TextStyle(
+            fontSize: 24,
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+      ),
       drawer: Drawer(
         child: ListView(children: [
           const ListTile(
