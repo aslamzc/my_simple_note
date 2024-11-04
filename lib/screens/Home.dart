@@ -19,17 +19,38 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
       ),
       drawer: Drawer(
-        child: ListView(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+        child: ListView(children: [
+          SwitchListTile(
+            title: const Text('Dark Theme'),
+            value: Theme.of(context).brightness == Brightness.dark,
+            onChanged: (value) {
+              setState(() {
+                final theme = value ? ThemeData.dark() : ThemeData.light();
+                runApp(
+                  MaterialApp(
+                    theme: theme,
+                    home: const HomeScreen(),
+                  ),
+                );
+              });
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.archive),
+            title: const Text('Archive'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.delete),
+            title: const Text('Deleted'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ]),
       ),
       body: notes.isEmpty
           ? const Center(child: Text('No notes available'))
