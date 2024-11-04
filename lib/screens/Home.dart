@@ -54,8 +54,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SizedBox(
                         height: 120,
                         child: ListTile(
-                          title: Text(notes[index].title),
-                          subtitle: Text(notes[index].note),
+                          title: Text(
+                            notes[index].title,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                          subtitle: Text(
+                            notes[index].note,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
                           onTap: () {
                             Navigator.of(context).push(
                               PageRouteBuilder(
