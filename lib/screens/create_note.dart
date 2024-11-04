@@ -54,7 +54,7 @@ class _CreateNoteState extends State<CreateNote> {
           ));
           Navigator.of(context).pop();
         },
-        child: const Icon(Icons.save),
+        child: const Icon(Icons.save, color: Color.fromARGB(255, 53, 51, 1)),
       ),
     );
   }

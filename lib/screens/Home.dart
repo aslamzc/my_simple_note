@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: const TextStyle(
                               fontSize: 22,
                               fontFamily: 'Roboto',
-                              color: Color.fromARGB(255, 53, 51, 51),
+                              color: Color.fromARGB(255, 53, 51, 1),
                             ),
                           ),
                           subtitle: Text(
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: const TextStyle(
                               fontSize: 18,
                               fontFamily: 'Roboto',
-                              color: Color.fromARGB(255, 53, 51, 51),
+                              color: Color.fromARGB(255, 53, 51, 1),
                             ),
                           ),
                           onTap: () {
@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Color.fromARGB(255, 53, 51, 1)),
       ),
     );
   }
