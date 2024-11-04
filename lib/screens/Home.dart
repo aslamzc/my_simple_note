@@ -36,7 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.only(left: 20),
                       color: const Color.fromRGBO(175, 23, 64, 1),
                       child: const Icon(Icons.delete,
-                          color: Color.fromARGB(255, 255, 255, 255)),
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          size: 40),
                     ),
                     child: Card(
                       color: const Color.fromRGBO(233, 238, 217, 1),
