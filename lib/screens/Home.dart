@@ -27,49 +27,54 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Card(
                     color: const Color.fromRGBO(233, 238, 217, 1),
-                    child: ListTile(
-                      title: Text(notes[index].title),
-                      subtitle: Text(notes[index].note),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () {
-                              deleteNote(index);
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.archive),
-                            onPressed: () {
-                              // Implement archive functionality here
-                            },
-                          ),
-                        ],
+                    child: SizedBox(
+                      height: 120,
+                      child: ListTile(
+                        title: Text(notes[index].title),
+                        subtitle: Text(notes[index].note),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () {
+                                deleteNote(index);
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.archive),
+                              onPressed: () {
+                                // Implement archive functionality here
+                              },
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              transitionDuration:
+                                  const Duration(milliseconds: 700),
+                              pageBuilder: (_, __, ___) =>
+                                  CreateNote(onCreateNote: createNote),
+                              transitionsBuilder: (_,
+                                  Animation<double> animation,
+                                  __,
+                                  Widget child) {
+                                return SlideTransition(
+                                  position: Tween<Offset>(
+                                    begin: const Offset(1, 0),
+                                    end: Offset.zero,
+                                  ).animate(CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeInOutCubic,
+                                  )),
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
+                        },
                       ),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                            transitionDuration:
-                                const Duration(milliseconds: 700),
-                            pageBuilder: (_, __, ___) =>
-                                CreateNote(onCreateNote: createNote),
-                            transitionsBuilder: (_, Animation<double> animation,
-                                __, Widget child) {
-                              return SlideTransition(
-                                position: Tween<Offset>(
-                                  begin: const Offset(1, 0),
-                                  end: Offset.zero,
-                                ).animate(CurvedAnimation(
-                                  parent: animation,
-                                  curve: Curves.easeInOutCubic,
-                                )),
-                                child: child,
-                              );
-                            },
-                          ),
-                        );
-                      },
                     ),
                   ),
                 );
