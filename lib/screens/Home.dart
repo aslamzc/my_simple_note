@@ -27,17 +27,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Dismissible(
                     key: Key(notes[index].title),
-                    direction: DismissDirection.startToEnd,
+                    direction: DismissDirection.horizontal,
                     onDismissed: (direction) {
-                      deleteNote(index);
+                      if (direction == DismissDirection.startToEnd) {
+                        deleteNote(index);
+                      } else if (direction == DismissDirection.endToStart) {
+                        // Implement archive action here
+                      }
                     },
                     background: Container(
                       alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.only(left: 20),
                       color: const Color.fromRGBO(175, 23, 64, 1),
                       child: const Icon(Icons.delete,
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          size: 40),
+                          color: Color.fromARGB(255, 255, 255, 255), size: 40),
+                    ),
+                    secondaryBackground: Container(
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.only(right: 20),
+                      color: const Color.fromRGBO(133, 159, 61, 1),
+                      child: const Icon(Icons.archive,
+                          color: Color.fromARGB(255, 255, 255, 255), size: 40),
                     ),
                     child: Card(
                       color: const Color.fromRGBO(233, 238, 217, 1),
@@ -46,12 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ListTile(
                           title: Text(notes[index].title),
                           subtitle: Text(notes[index].note),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.archive),
-                            onPressed: () {
-                              deleteNote(index);
-                            },
-                          ),
                           onTap: () {
                             Navigator.of(context).push(
                               PageRouteBuilder(
