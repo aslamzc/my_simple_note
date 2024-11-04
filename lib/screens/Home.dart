@@ -25,55 +25,58 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Card(
-                    color: const Color.fromRGBO(233, 238, 217, 1),
-                    child: SizedBox(
-                      height: 120,
-                      child: ListTile(
-                        title: Text(notes[index].title),
-                        subtitle: Text(notes[index].note),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () {
-                                deleteNote(index);
-                              },
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.archive),
-                              onPressed: () {
-                                // Implement archive functionality here
-                              },
-                            ),
-                          ],
+                  child: Dismissible(
+                    key: Key(notes[index].title),
+                    direction: DismissDirection.startToEnd,
+                    onDismissed: (direction) {
+                      deleteNote(index);
+                    },
+                    background: Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.only(left: 20),
+                      color: const Color.fromRGBO(175, 23, 64, 1),
+                      child: const Icon(Icons.archive,
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
+                    child: Card(
+                      color: const Color.fromRGBO(233, 238, 217, 1),
+                      child: SizedBox(
+                        height: 120,
+                        child: ListTile(
+                          title: Text(notes[index].title),
+                          subtitle: Text(notes[index].note),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {
+                              deleteNote(index);
+                            },
+                          ),
+                          onTap: () {
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                transitionDuration:
+                                    const Duration(milliseconds: 700),
+                                pageBuilder: (_, __, ___) =>
+                                    CreateNote(onCreateNote: createNote),
+                                transitionsBuilder: (_,
+                                    Animation<double> animation,
+                                    __,
+                                    Widget child) {
+                                  return SlideTransition(
+                                    position: Tween<Offset>(
+                                      begin: const Offset(1, 0),
+                                      end: Offset.zero,
+                                    ).animate(CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.easeInOutCubic,
+                                    )),
+                                    child: child,
+                                  );
+                                },
+                              ),
+                            );
+                          },
                         ),
-                        onTap: () {
-                          Navigator.of(context).push(
-                            PageRouteBuilder(
-                              transitionDuration:
-                                  const Duration(milliseconds: 700),
-                              pageBuilder: (_, __, ___) =>
-                                  CreateNote(onCreateNote: createNote),
-                              transitionsBuilder: (_,
-                                  Animation<double> animation,
-                                  __,
-                                  Widget child) {
-                                return SlideTransition(
-                                  position: Tween<Offset>(
-                                    begin: const Offset(1, 0),
-                                    end: Offset.zero,
-                                  ).animate(CurvedAnimation(
-                                    parent: animation,
-                                    curve: Curves.easeInOutCubic,
-                                  )),
-                                  child: child,
-                                );
-                              },
-                            ),
-                          );
-                        },
                       ),
                     ),
                   ),
