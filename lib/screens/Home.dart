@@ -30,11 +30,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ListTile(
                       title: Text(notes[index].title),
                       subtitle: Text(notes[index].note),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.delete),
-                        onPressed: () {
-                          deleteNote(index);
-                        },
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {
+                              deleteNote(index);
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.archive),
+                            onPressed: () {
+                              // Implement archive functionality here
+                            },
+                          ),
+                        ],
                       ),
                       onTap: () {
                         Navigator.of(context).push(
