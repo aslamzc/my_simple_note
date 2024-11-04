@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.only(left: 20),
                       color: const Color.fromRGBO(175, 23, 64, 1),
-                      child: const Icon(Icons.archive,
+                      child: const Icon(Icons.delete,
                           color: Color.fromARGB(255, 255, 255, 255)),
                     ),
                     child: Card(
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           title: Text(notes[index].title),
                           subtitle: Text(notes[index].note),
                           trailing: IconButton(
-                            icon: const Icon(Icons.delete),
+                            icon: const Icon(Icons.archive),
                             onPressed: () {
                               deleteNote(index);
                             },
