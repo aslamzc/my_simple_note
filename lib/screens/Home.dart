@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
 import 'package:my_simple_note/screens/create_note.dart';
 import 'package:my_simple_note/screens/widgets/note_card.dart';
-// import 'package:my_simple_note/services/database_service.dart';
+import 'package:my_simple_note/services/database_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  // final DatabaseService _databaseService = DatabaseService.instance;
+  final DatabaseService _databaseService = DatabaseService.instance;
   List<Note> notes = List.empty(growable: true);
 
   @override
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Notesg',
+          'Notes',
           style: TextStyle(
             fontSize: 24,
             fontFamily: 'Roboto',
