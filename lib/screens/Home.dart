@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text(
               'Simple Note',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 28,
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.bold,
               ),
@@ -109,8 +109,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           title: Text(
                             notes[index].title,
                             style: const TextStyle(
-                              fontSize: 22,
+                              fontSize: 28,
                               fontFamily: 'Roboto',
+                              fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 53, 51, 1),
                             ),
                           ),
