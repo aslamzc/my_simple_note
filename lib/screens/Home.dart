@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
 import 'package:my_simple_note/screens/create_note.dart';
+import 'package:my_simple_note/screens/widgets/note_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -102,56 +103,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: const Icon(Icons.archive,
                           color: Color.fromARGB(255, 255, 255, 255), size: 40),
                     ),
-                    child: Card(
-                      color: const Color.fromRGBO(166, 174, 191, 1),
-                      child: SizedBox(
-                        height: 120,
-                        child: ListTile(
-                          title: Text(
-                            notes[index].title,
-                            style: const TextStyle(
-                              fontSize: 28,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 53, 51, 1),
-                            ),
-                          ),
-                          subtitle: Text(
-                            notes[index].note,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontFamily: 'Roboto',
-                              color: Color.fromARGB(255, 53, 51, 1),
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.of(context).push(
-                              PageRouteBuilder(
-                                transitionDuration:
-                                    const Duration(milliseconds: 700),
-                                pageBuilder: (_, __, ___) =>
-                                    CreateNote(onCreateNote: createNote),
-                                transitionsBuilder: (_,
-                                    Animation<double> animation,
-                                    __,
-                                    Widget child) {
-                                  return SlideTransition(
-                                    position: Tween<Offset>(
-                                      begin: const Offset(1, 0),
-                                      end: Offset.zero,
-                                    ).animate(CurvedAnimation(
-                                      parent: animation,
-                                      curve: Curves.easeInOutCubic,
-                                    )),
-                                    child: child,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
+                    child: NoteCard(
+                        note: notes[index],
+                        index: index,
+                        createNote: createNote),
                   ),
                 );
               },
