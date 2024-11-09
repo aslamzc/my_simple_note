@@ -51,7 +51,7 @@ class _CreateNoteState extends State<CreateNote> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(133, 159, 61, 1),
+        backgroundColor: const Color.fromRGBO(166, 174, 191, 1),
         onPressed: () {
           widget.onCreateNote(Note(
             title: titleController.text,

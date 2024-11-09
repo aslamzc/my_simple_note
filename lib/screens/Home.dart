@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SwitchListTile(
             title: const Text('Dark Theme'),
             value: Theme.of(context).brightness == Brightness.dark,
-            activeColor: const Color.fromRGBO(133, 159, 61, 1),
+            activeColor: const Color.fromRGBO(166, 174, 191, 1),
             onChanged: (value) {
               setState(() {
                 final theme = value ? ThemeData.dark() : ThemeData.light();
@@ -97,12 +97,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     secondaryBackground: Container(
                       alignment: Alignment.centerRight,
                       padding: const EdgeInsets.only(right: 20),
-                      color: const Color.fromRGBO(176, 48, 82, 1),
+                      color: const Color.fromRGBO(49, 81, 30, 1),
                       child: const Icon(Icons.archive,
                           color: Color.fromARGB(255, 255, 255, 255), size: 40),
                     ),
                     child: Card(
-                      color: const Color.fromRGBO(133, 159, 61, 1),
+                      color: const Color.fromRGBO(166, 174, 191, 1),
                       child: SizedBox(
                         height: 120,
                         child: ListTile(
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(133, 159, 61, 1),
+        backgroundColor: const Color.fromRGBO(166, 174, 191, 1),
         onPressed: () {
           Navigator.of(context).push(
             PageRouteBuilder(
