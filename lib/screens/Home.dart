@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 final theme = value ? ThemeData.dark() : ThemeData.light();
                 runApp(
                   MaterialApp(
+                    debugShowCheckedModeBanner: false,
                     theme: theme,
                     home: const HomeScreen(),
                   ),
