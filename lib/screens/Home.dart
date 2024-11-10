@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
 import 'package:my_simple_note/screens/create_note.dart';
+import 'package:my_simple_note/screens/widgets/note_add_button.dart';
 import 'package:my_simple_note/screens/widgets/note_card.dart';
 import 'package:my_simple_note/services/database_service.dart';
 
@@ -68,46 +69,52 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ]),
       ),
-      body: notes.isEmpty
-          ? const Center(child: Text('No notes available'))
-          : ListView.builder(
-              itemCount: notes.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Dismissible(
-                    key: Key(notes[index].title),
-                    direction: DismissDirection.horizontal,
-                    onDismissed: (direction) {
-                      if (direction == DismissDirection.startToEnd) {
-                        deleteNote(index);
-                      } else if (direction == DismissDirection.endToStart) {
-                        // Implement archive action here
-                      }
+      body: FutureBuilder(
+          future: _databaseService.getNotes(),
+          builder: (context, snapshot) {
+            return !snapshot.hasData
+                ? const Center(child: Text('No notes available'))
+                : ListView.builder(
+                    itemCount: snapshot.data?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      Note note = snapshot.data![index];
+
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Dismissible(
+                          key: Key(note.title),
+                          direction: DismissDirection.horizontal,
+                          onDismissed: (direction) {
+                            if (direction == DismissDirection.startToEnd) {
+                              deleteNote(index);
+                            } else if (direction ==
+                                DismissDirection.endToStart) {
+                              // Implement archive action here
+                            }
+                          },
+                          background: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.only(left: 20),
+                            color: const Color.fromRGBO(175, 23, 64, 1),
+                            child: const Icon(Icons.delete,
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                size: 40),
+                          ),
+                          secondaryBackground: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 20),
+                            color: const Color.fromRGBO(49, 81, 30, 1),
+                            child: const Icon(Icons.archive,
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                size: 40),
+                          ),
+                          child: NoteCard(note: note, createNote: createNote),
+                        ),
+                      );
                     },
-                    background: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(left: 20),
-                      color: const Color.fromRGBO(175, 23, 64, 1),
-                      child: const Icon(Icons.delete,
-                          color: Color.fromARGB(255, 255, 255, 255), size: 40),
-                    ),
-                    secondaryBackground: Container(
-                      alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.only(right: 20),
-                      color: const Color.fromRGBO(49, 81, 30, 1),
-                      child: const Icon(Icons.archive,
-                          color: Color.fromARGB(255, 255, 255, 255), size: 40),
-                    ),
-                    child: NoteCard(
-                        note: notes[index],
-                        index: index,
-                        createNote: createNote),
-                  ),
-                );
-              },
-            ),
-      floatingActionButton: _addNoteButton(),
+                  );
+          }),
+      floatingActionButton: NoteAddButton(createNote: createNote),
     );
   }
 
@@ -121,41 +128,5 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       notes.removeAt(index);
     });
-  }
-
-  Widget _addNoteButton() {
-    return FloatingActionButton(
-      backgroundColor: const Color.fromRGBO(166, 174, 191, 1),
-      onPressed: () {
-        Navigator.of(context).push(
-          PageRouteBuilder(
-            transitionDuration: const Duration(milliseconds: 700),
-            pageBuilder: (_, __, ___) => CreateNote(onCreateNote: createNote),
-            transitionsBuilder:
-                (_, Animation<double> animation, __, Widget child) {
-              return SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(1, 0),
-                  end: Offset.zero,
-                ).animate(CurvedAnimation(
-                  parent: animation,
-                  curve: Curves.easeInOutCubic,
-                )),
-                child: child,
-              );
-            },
-          ),
-        );
-      },
-      child: const Icon(Icons.add, color: Color.fromARGB(255, 53, 51, 1)),
-    );
-  }
-
-  Widget _noteList() {
-    return FutureBuilder(
-        future: _databaseService.getNotes(),
-        builder: (context, snapshot) {
-          return Container();
-        });
   }
 }

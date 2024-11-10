@@ -3,14 +3,9 @@ import 'package:my_simple_note/models/Note.dart';
 import 'package:my_simple_note/screens/create_note.dart';
 
 class NoteCard extends StatelessWidget {
-  const NoteCard(
-      {super.key,
-      required this.note,
-      required this.index,
-      required this.createNote});
+  const NoteCard({super.key, required this.note, required this.createNote});
 
   final Note note;
-  final int index;
   final Function(Note) createNote;
 
   @override
