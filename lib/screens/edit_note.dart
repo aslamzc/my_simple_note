@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
 import 'package:my_simple_note/screens/Home.dart';
+import 'package:my_simple_note/screens/archive.dart';
 import 'package:my_simple_note/services/database_service.dart';
 
 class EditNote extends StatefulWidget {
@@ -78,11 +79,13 @@ class _EditNoteState extends State<EditNote> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const HomeScreen(),
+              builder: (context) => widget.note.status == 1
+                  ? const HomeScreen()
+                  : const ArchiveScreen(),
             ),
           );
         },
-        child: const Icon(Icons.save, color: Color.fromARGB(255, 53, 51, 1)),
+        child: const Icon(Icons.edit, color: Color.fromARGB(255, 53, 51, 1)),
       ),
     );
   }
