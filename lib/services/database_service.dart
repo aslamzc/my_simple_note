@@ -50,9 +50,18 @@ class DatabaseService {
     });
   }
 
-  Future<List<Note>?> getNotes() async {
+  Future<List<Note>> getNotes() async {
     final db = await database;
     final data = await db.query(_notesTableName);
-    print(data);
+    List<Note> notes = data
+        .map((note) => Note(
+            id: note["id"] as int,
+            title: note["title"] as String,
+            content: note["content"] as String,
+            status: note["status"] as int,
+            updated_at: note["updated_at"] as String,
+            created_at: note["created_at"] as String))
+        .toList();
+    return notes;
   }
 }
