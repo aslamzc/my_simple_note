@@ -29,7 +29,7 @@ class _EditNoteState extends State<EditNote> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Note',
+        title: const Text('Edit Note',
             style: TextStyle(
               fontSize: 24,
               fontFamily: 'Roboto',
