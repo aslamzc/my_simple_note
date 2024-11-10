@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_simple_note/screens/Home.dart';
 import 'package:my_simple_note/services/database_service.dart';
 
 class CreateNote extends StatefulWidget {
@@ -62,7 +63,12 @@ class _CreateNoteState extends State<CreateNote> {
             "status": 1,
             "updated_date": DateTime.now().toString(),
           });
-          Navigator.pop(context);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            ),
+          );
         },
         child: const Icon(Icons.save, color: Color.fromARGB(255, 53, 51, 1)),
       ),
