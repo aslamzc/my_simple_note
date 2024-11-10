@@ -16,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final DatabaseService _databaseService = DatabaseService.instance;
-  List<Note> notes = List.empty(growable: true);
 
   @override
   Widget build(BuildContext context) {
