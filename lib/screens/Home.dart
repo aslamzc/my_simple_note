@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                         content: Text('Note deleted')));
-                                setState(() {});
+                                // setState(() {});
                               });
                             } else if (direction ==
                                 DismissDirection.endToStart) {
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                         content: Text('Note archived')));
-                                setState(() {});
+                                // setState(() {});
                               });
                             }
                           },
