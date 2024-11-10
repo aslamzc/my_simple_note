@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/screens/Home.dart';
+import 'package:my_simple_note/screens/archive.dart';
 
 class LeftMenu extends StatefulWidget {
   const LeftMenu({super.key});
@@ -41,10 +42,25 @@ class _LeftMenuState extends State<LeftMenu> {
           },
         ),
         ListTile(
+          leading: const Icon(Icons.home),
+          title: const Text('All Notes'),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const HomeScreen(),
+              ),
+            );
+          },
+        ),
+        ListTile(
           leading: const Icon(Icons.archive),
           title: const Text('Archive'),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const ArchiveScreen(),
+              ),
+            );
           },
         ),
       ]),
