@@ -2,7 +2,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseService {
-  // static Database? _db;
+  static Database? _db;
   static final DatabaseService instance = DatabaseService._constructor();
 
   final String _notesTableName = 'notes';
@@ -15,7 +15,7 @@ class DatabaseService {
 
   DatabaseService._constructor();
 
-  // Future<Database> get database async => _db ??= await getDatabase();
+  Future<Database> get database async => _db ??= await getDatabase();
 
   Future<Database> getDatabase() async {
     final databaseDirPath = await getDatabasesPath();
@@ -38,13 +38,13 @@ class DatabaseService {
     return database;
   }
 
-  // void addNote(Map<String, dynamic> note) async {
-  //   final db = await database;
-  //   await db.insert(_notesTableName, {
-  //     _notesTitleColumnName: "Test Title",
-  //     _notesContentColumnName: "Test Content",
-  //     _notesStatusColumnName: 1,
-  //     _notesUpdatedDateColumnName: DateTime.now().toString(),
-  //   });
-  // }
+  void addNote(Map<String, dynamic> note) async {
+    final db = await database;
+    await db.insert(_notesTableName, {
+      _notesTitleColumnName: "Test Title",
+      _notesContentColumnName: "Test Content",
+      _notesStatusColumnName: 1,
+      _notesUpdatedDateColumnName: DateTime.now().toString(),
+    });
+  }
 }
