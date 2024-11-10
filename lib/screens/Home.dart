@@ -37,9 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: FutureBuilder(
           future: _databaseService.getNotes(),
           builder: (context, snapshot) {
-            return !snapshot.hasData
-                ? const Center(child: Text('No notes available'))
-                : ListView.builder(
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return snapshot.hasData
+                ? ListView.builder(
                     itemCount: snapshot.data?.length ?? 0,
                     itemBuilder: (context, index) {
                       Note note = snapshot.data![index];
@@ -62,7 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       );
                     },
-                  );
+                  )
+                : const Center(child: Text('No notes available'));
           }),
       floatingActionButton: NoteAddButton(createNote: createNote),
     );
