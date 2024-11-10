@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_simple_note/models/Note.dart';
 import 'package:my_simple_note/screens/create_note.dart';
 
 class NoteAddButton extends StatelessWidget {
-  const NoteAddButton({super.key, required this.createNote});
-  final Function(Note) createNote;
+  const NoteAddButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +12,7 @@ class NoteAddButton extends StatelessWidget {
         Navigator.of(context).push(
           PageRouteBuilder(
             transitionDuration: const Duration(milliseconds: 700),
-            pageBuilder: (_, __, ___) => CreateNote(onCreateNote: createNote),
+            pageBuilder: (_, __, ___) => const CreateNote(),
             transitionsBuilder:
                 (_, Animation<double> animation, __, Widget child) {
               return SlideTransition(

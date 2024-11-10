@@ -3,10 +3,9 @@ import 'package:my_simple_note/models/Note.dart';
 import 'package:my_simple_note/screens/create_note.dart';
 
 class NoteCard extends StatelessWidget {
-  const NoteCard({super.key, required this.note, required this.createNote});
+  const NoteCard({super.key, required this.note});
 
   final Note note;
-  final Function(Note) createNote;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class NoteCard extends StatelessWidget {
           Navigator.of(context).push(
             PageRouteBuilder(
               transitionDuration: const Duration(milliseconds: 700),
-              pageBuilder: (_, __, ___) => CreateNote(onCreateNote: createNote),
+              pageBuilder: (_, __, ___) => const CreateNote(),
               transitionsBuilder:
                   (_, Animation<double> animation, __, Widget child) {
                 return SlideTransition(

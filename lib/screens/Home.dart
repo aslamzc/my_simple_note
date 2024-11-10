@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
-import 'package:my_simple_note/screens/create_note.dart';
 import 'package:my_simple_note/screens/widgets/card_background.dart';
 import 'package:my_simple_note/screens/widgets/card_background_2.dart';
 import 'package:my_simple_note/screens/widgets/left_menu.dart';
@@ -60,26 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           background: const CardBackground(),
                           secondaryBackground: const CardBackground2(),
-                          child: NoteCard(note: note, createNote: createNote),
+                          child: NoteCard(note: note),
                         ),
                       );
                     },
                   )
                 : const Center(child: Text('No notes available'));
           }),
-      floatingActionButton: NoteAddButton(createNote: createNote),
+      floatingActionButton: const NoteAddButton(),
     );
-  }
-
-  void createNote(Note note) {
-    setState(() {
-      notes.add(note);
-    });
-  }
-
-  void deleteNote(int index) {
-    setState(() {
-      notes.removeAt(index);
-    });
   }
 }

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
+import 'package:my_simple_note/screens/Home.dart';
 import 'package:my_simple_note/services/database_service.dart';
 
 class CreateNote extends StatefulWidget {
-  const CreateNote({super.key, required this.onCreateNote});
-
-  final Function(Note) onCreateNote;
+  const CreateNote({super.key});
 
   @override
   State<CreateNote> createState() => _CreateNoteState();
@@ -59,14 +58,13 @@ class _CreateNoteState extends State<CreateNote> {
           if (titleController.text.isEmpty || noteController.text.isEmpty) {
             return;
           }
-
           _databaseService.addNote({
             "title": titleController.text,
             "content": noteController.text,
             "status": 1,
             "updated_date": DateTime.now().toString(),
           });
-          Navigator.of(context).pop();
+          Navigator.pop(context);
         },
         child: const Icon(Icons.save, color: Color.fromARGB(255, 53, 51, 1)),
       ),
