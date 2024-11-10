@@ -52,7 +52,7 @@ class NoteCard extends StatelessWidget {
                 ),
               ),
               subtitle: Text(
-                note.note,
+                note.content,
                 style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Roboto',

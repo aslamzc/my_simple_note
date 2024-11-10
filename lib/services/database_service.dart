@@ -1,3 +1,4 @@
+import 'package:my_simple_note/models/Note.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -22,6 +23,7 @@ class DatabaseService {
     final databasePath = join(databaseDirPath, 'simple_note.db');
     final database = await openDatabase(
       databasePath,
+      version: 1,
       onCreate: (db, version) {
         db.execute('''
           CREATE TABLE $_notesTableName(
@@ -46,5 +48,11 @@ class DatabaseService {
       _notesStatusColumnName: 1,
       _notesUpdatedDateColumnName: DateTime.now().toString(),
     });
+  }
+
+  Future<List<Note>?> getNotes() async {
+    final db = await database;
+    final data = await db.query(_notesTableName);
+    print(data);
   }
 }

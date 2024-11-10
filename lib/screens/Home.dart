@@ -150,4 +150,12 @@ class _HomeScreenState extends State<HomeScreen> {
       child: const Icon(Icons.add, color: Color.fromARGB(255, 53, 51, 1)),
     );
   }
+
+  Widget _noteList() {
+    return FutureBuilder(
+        future: _databaseService.getNotes(),
+        builder: (context, snapshot) {
+          return Container();
+        });
+  }
 }

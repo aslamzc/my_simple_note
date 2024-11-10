@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
+import 'package:my_simple_note/services/database_service.dart';
 
 class CreateNote extends StatefulWidget {
   const CreateNote({super.key, required this.onCreateNote});
@@ -11,6 +12,8 @@ class CreateNote extends StatefulWidget {
 }
 
 class _CreateNoteState extends State<CreateNote> {
+  final DatabaseService _databaseService = DatabaseService.instance;
+
   final titleController = TextEditingController();
   final noteController = TextEditingController();
   @override
@@ -56,10 +59,19 @@ class _CreateNoteState extends State<CreateNote> {
           if (titleController.text.isEmpty || noteController.text.isEmpty) {
             return;
           }
-          widget.onCreateNote(Note(
-            title: titleController.text,
-            note: noteController.text,
-          ));
+
+          _databaseService.addNote({
+            "title": titleController.text,
+            "content": noteController.text,
+            "status": 1,
+            "updated_date": DateTime.now().toString(),
+          });
+
+// _databaseService.getNotes();
+          // widget.onCreateNote(Note(
+          //   title: titleController.text,
+          //   note: noteController.text,
+          // ));
           Navigator.of(context).pop();
         },
         child: const Icon(Icons.save, color: Color.fromARGB(255, 53, 51, 1)),
