@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_simple_note/models/Note.dart';
-import 'package:my_simple_note/screens/Home.dart';
 import 'package:my_simple_note/services/database_service.dart';
 
 class CreateNote extends StatefulWidget {
