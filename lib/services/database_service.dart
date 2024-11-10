@@ -50,6 +50,26 @@ class DatabaseService {
     });
   }
 
+  void updateNote(Map<String, dynamic> note) async {
+    final db = await database;
+    await db.update(
+        _notesTableName,
+        {
+          _notesTitleColumnName: note[_notesTitleColumnName],
+          _notesContentColumnName: note[_notesContentColumnName],
+          _notesStatusColumnName: note[_notesStatusColumnName],
+          _notesUpdatedDateColumnName: DateTime.now().toString(),
+        },
+        where: '$_notesIdColumnName = ?',
+        whereArgs: [note[_notesIdColumnName]]);
+  }
+
+  Future<int> deleteNote(int id) async {
+    final db = await database;
+    return await db.delete(_notesTableName,
+        where: '$_notesIdColumnName = ?', whereArgs: [id]);
+  }
+
   Future<List<Note>> getNotes() async {
     final db = await database;
     final data = await db.query(_notesTableName,
@@ -82,12 +102,6 @@ class DatabaseService {
             created_at: note["created_at"] as String))
         .toList();
     return notes;
-  }
-
-  Future<int> deleteNote(int id) async {
-    final db = await database;
-    return await db.delete(_notesTableName,
-        where: '$_notesIdColumnName = ?', whereArgs: [id]);
   }
 
   Future<int> archiveNote(int id) async {
