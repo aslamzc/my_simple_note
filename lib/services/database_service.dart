@@ -89,4 +89,16 @@ class DatabaseService {
     return await db.delete(_notesTableName,
         where: '$_notesIdColumnName = ?', whereArgs: [id]);
   }
+
+  Future<int> archiveNote(int id) async {
+    final db = await database;
+    return await db.update(
+        _notesTableName,
+        {
+          _notesStatusColumnName: 2,
+          _notesUpdatedDateColumnName: DateTime.now().toString(),
+        },
+        where: '$_notesIdColumnName = ?',
+        whereArgs: [id]);
+  }
 }

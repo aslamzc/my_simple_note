@@ -60,7 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               });
                             } else if (direction ==
                                 DismissDirection.endToStart) {
-                              // Implement archive action here
+                              _databaseService
+                                  .archiveNote(note.id!)
+                                  .then((value) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('Note archived')));
+                                setState(() {});
+                              });
                             }
                           },
                           background: const CardBackground(),
