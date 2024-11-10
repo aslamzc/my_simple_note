@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
 import 'package:my_simple_note/screens/create_note.dart';
+import 'package:my_simple_note/screens/edit_note.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({super.key, required this.note});
@@ -14,7 +15,7 @@ class NoteCard extends StatelessWidget {
           Navigator.of(context).push(
             PageRouteBuilder(
               transitionDuration: const Duration(milliseconds: 700),
-              pageBuilder: (_, __, ___) => const CreateNote(),
+              pageBuilder: (_, __, ___) => EditNote(note: note),
               transitionsBuilder:
                   (_, Animation<double> animation, __, Widget child) {
                 return SlideTransition(

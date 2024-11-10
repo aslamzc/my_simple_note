@@ -15,8 +15,16 @@ class EditNote extends StatefulWidget {
 class _EditNoteState extends State<EditNote> {
   final DatabaseService _databaseService = DatabaseService.instance;
 
-  final titleController = TextEditingController();
-  final noteController = TextEditingController();
+  late TextEditingController titleController;
+  late TextEditingController noteController;
+
+  @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController(text: widget.note.title);
+    noteController = TextEditingController(text: widget.note.content);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,10 +68,11 @@ class _EditNoteState extends State<EditNote> {
           if (titleController.text.isEmpty || noteController.text.isEmpty) {
             return;
           }
-          _databaseService.addNote({
+          _databaseService.updateNote({
+            "id": widget.note.id,
             "title": titleController.text,
             "content": noteController.text,
-            "status": 1,
+            "status": widget.note.status,
             "updated_date": DateTime.now().toString(),
           });
           Navigator.pushReplacement(
