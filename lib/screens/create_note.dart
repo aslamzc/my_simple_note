@@ -66,12 +66,6 @@ class _CreateNoteState extends State<CreateNote> {
             "status": 1,
             "updated_date": DateTime.now().toString(),
           });
-
-// _databaseService.getNotes();
-          // widget.onCreateNote(Note(
-          //   title: titleController.text,
-          //   note: noteController.text,
-          // ));
           Navigator.of(context).pop();
         },
         child: const Icon(Icons.save, color: Color.fromARGB(255, 53, 51, 1)),

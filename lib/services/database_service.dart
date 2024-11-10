@@ -43,8 +43,8 @@ class DatabaseService {
   void addNote(Map<String, dynamic> note) async {
     final db = await database;
     await db.insert(_notesTableName, {
-      _notesTitleColumnName: "Test Title",
-      _notesContentColumnName: "Test Content",
+      _notesTitleColumnName: note[_notesTitleColumnName],
+      _notesContentColumnName: note[_notesContentColumnName],
       _notesStatusColumnName: 1,
       _notesUpdatedDateColumnName: DateTime.now().toString(),
     });
@@ -52,7 +52,8 @@ class DatabaseService {
 
   Future<List<Note>> getNotes() async {
     final db = await database;
-    final data = await db.query(_notesTableName);
+    final data = await db.query(_notesTableName,
+        orderBy: '$_notesUpdatedDateColumnName DESC');
     List<Note> notes = data
         .map((note) => Note(
             id: note["id"] as int,
