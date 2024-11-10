@@ -83,4 +83,10 @@ class DatabaseService {
         .toList();
     return notes;
   }
+
+  Future<int> deleteNote(int id) async {
+    final db = await database;
+    return await db.delete(_notesTableName,
+        where: '$_notesIdColumnName = ?', whereArgs: [id]);
+  }
 }

@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }
-            return snapshot.hasData
+            return snapshot.hasData && snapshot.data!.isNotEmpty
                 ? ListView.builder(
                     itemCount: snapshot.data?.length ?? 0,
                     itemBuilder: (context, index) {
@@ -50,7 +50,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           direction: DismissDirection.horizontal,
                           onDismissed: (direction) {
                             if (direction == DismissDirection.startToEnd) {
-                              // Implement delete action here
+                              _databaseService
+                                  .deleteNote(note.id!)
+                                  .then((value) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('Note deleted')));
+                                setState(() {});
+                              });
                             } else if (direction ==
                                 DismissDirection.endToStart) {
                               // Implement archive action here
