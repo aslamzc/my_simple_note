@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_simple_note/models/Note.dart';
 import 'package:my_simple_note/screens/widgets/card_background.dart';
-import 'package:my_simple_note/screens/widgets/card_background_2.dart';
+import 'package:my_simple_note/screens/widgets/card_background_3.dart';
 import 'package:my_simple_note/screens/widgets/left_menu.dart';
 import 'package:my_simple_note/screens/widgets/note_add_button.dart';
 import 'package:my_simple_note/screens/widgets/note_card.dart';
@@ -71,7 +71,7 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
                             }
                           },
                           background: const CardBackground(),
-                          secondaryBackground: const CardBackground2(),
+                          secondaryBackground: const CardBackground3(),
                           child: NoteCard(note: note),
                         ),
                       );
