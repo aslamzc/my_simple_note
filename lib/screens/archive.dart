@@ -61,11 +61,11 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
                             } else if (direction ==
                                 DismissDirection.endToStart) {
                               _databaseService
-                                  .archiveNote(note.id!)
+                                  .unarchiveNote(note.id!)
                                   .then((value) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
-                                        content: Text('Note archived')));
+                                        content: Text('Unarchived note')));
                                 setState(() {});
                               });
                             }

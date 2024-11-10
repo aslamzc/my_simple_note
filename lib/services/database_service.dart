@@ -101,4 +101,16 @@ class DatabaseService {
         where: '$_notesIdColumnName = ?',
         whereArgs: [id]);
   }
+
+  Future<int> unarchiveNote(int id) async {
+    final db = await database;
+    return await db.update(
+        _notesTableName,
+        {
+          _notesStatusColumnName: 1,
+          _notesUpdatedDateColumnName: DateTime.now().toString(),
+        },
+        where: '$_notesIdColumnName = ?',
+        whereArgs: [id]);
+  }
 }

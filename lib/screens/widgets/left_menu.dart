@@ -43,7 +43,7 @@ class _LeftMenuState extends State<LeftMenu> {
         ),
         ListTile(
           leading: const Icon(Icons.home),
-          title: const Text('All Notes'),
+          title: const Text('Home'),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
